@@ -1,0 +1,80 @@
+Entities and Attributes:
+
+1. Members
+   - member_id (PK)
+   - username (Unique, NN)
+   - password (NN)
+   - email (Unique, NN)
+   - full_name
+   - birthdate (Date)
+   - weight (Float)
+   - height (Float)
+   - fitness_goal (VarChar(255))
+
+2. Trainers
+   - trainer_id (PK)
+   - username (Unique, NN)
+   - password (NN)
+   - email (Unique, NN)
+   - full_name
+
+3. FitnessGoals
+   - goal_id (PK)
+   - member_id (FK -> Members.member_id)
+   - goal_description (Text, NN)
+   - goal_date (Date)
+
+4. AdministrativeStaff
+   - staff_id (PK)
+   - username (Unique, NN)
+   - password (NN)
+   - email (Unique, NN)
+   - full_name
+
+5. Classes
+   - class_id (PK)
+   - class_name
+   - trainer_id (FK -> Trainers.trainer_id, Optional)
+   - max_capacity (Integer)
+   - class_time (Timestamp)
+   - duration (Interval)
+
+6. ClassBookings
+   - booking_id (PK)
+   - member_id (FK -> Members.member_id)
+   - class_id (FK -> Classes.class_id)
+   - booking_time (Timestamp)
+
+7. PersonalTrainingSessions
+   - session_id (PK)
+   - member_id (FK -> Members.member_id)
+   - trainer_id (FK -> Trainers.trainer_id)
+   - session_time (Timestamp)
+   - duration (Interval)
+
+8. Equipment
+   - equipment_id (PK)
+   - equipment_name
+   - purchase_date (Date)
+   - maintenance_interval (Interval)
+   - last_maintenance_date (Date)
+
+9. Payments
+   - payment_id (PK)
+   - member_id (FK -> Members.member_id)
+   - amount (Decimal(10, 2))
+   - payment_time (Timestamp)
+
+
+Equipment (No direct relationships with other tables)
+
+AdministrativeStaff (No direct relationships with other tables)
+
+Notes:
+- PK: Primary Key
+- FK: Foreign Key
+- NN: Not Null
+- Unique: Unique constraint
+- Text and other data types such as Date, Timestamp, Interval, Decimal are specified.
+- Relationships are depicted with lines connecting relevant entities.
+- Optional relationships are marked and indicated where references might be null.
